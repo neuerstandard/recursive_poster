@@ -1,5 +1,6 @@
 Flask
+gunicorn
 qrcode
 reportlab
-gunicorn
+
 
