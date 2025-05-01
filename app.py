@@ -5,7 +5,6 @@ from reportlab.lib.units import mm
 import qrcode
 from qrcode.constants import ERROR_CORRECT_H
 
-# Die App-Instanz, die gunicorn erwartet
 app = Flask(__name__)
 
 @app.route('/')
@@ -14,7 +13,7 @@ def index():
 
 @app.route('/download')
 def download():
-    url = request.url  # Self-referenzieller Link
+    url = request.url
 
     qr = qrcode.QRCode(error_correction=ERROR_CORRECT_H, box_size=1, border=0)
     qr.add_data(url)
@@ -29,10 +28,14 @@ def download():
     buffer = io.BytesIO()
     c = canvas.Canvas(buffer, pagesize=(w_pt, h_pt))
 
-    c.setFillColorRGB(1, 1, 1)
+    c.setTitle("recursive_poster")
+    c.setAuthor("neuerstandard")
+    c.setSubject("A recursively generated poster that encodes a link to its own identical copy.")
+
+    c.setFillColorRGB(254 / 255, 0, 0)  # rot (#FE0000)
     c.rect(0, 0, w_pt, h_pt, fill=1, stroke=0)
 
-    c.setFillColorRGB(0, 0, 0)
+    c.setFillColorRGB(60 / 255, 254 / 255, 1 / 255)  # grün (#3CFE01)
     for r, row in enumerate(matrix):
         for cidx, bit in enumerate(row):
             if bit:
@@ -48,9 +51,8 @@ def download():
         buffer,
         mimetype='application/octet-stream',
         as_attachment=True,
-        download_name='poster.pdf'
+        download_name='recursive_poster.pdf'
     )
 
-# Nur für lokale Tests – Render ignoriert diesen Teil
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
