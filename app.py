@@ -35,7 +35,7 @@ def download():
     c.setFillColorRGB(254 / 255, 0, 0)  # rot (#FE0000)
     c.rect(0, 0, w_pt, h_pt, fill=1, stroke=0)
 
-    c.setFillColorRGB(60 / 255, 254 / 255, 1 / 255)  # grün (#3CFE01)
+    c.setFillColorRGB(0 / 0, 0 ) 
     for r, row in enumerate(matrix):
         for cidx, bit in enumerate(row):
             if bit:
