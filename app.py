@@ -32,7 +32,7 @@ def download():
     c.setAuthor("neuerstandard")
     c.setSubject("A recursively generated poster that encodes a link to its own identical copy.")
 
-    c.setFillColorRGB(170 / 255, 158 / 255, 144 / 255)
+    c.setFillColorRGB(1, 1, 1)
 
     c.rect(0, 0, w_pt, h_pt, fill=1, stroke=0)
 
