@@ -21,7 +21,7 @@ def download():
     matrix = qr.get_matrix()
     module_count = len(matrix)
 
-    w_pt, h_pt = 895 * mm, 1280 * mm
+    w_pt, h_pt = 841 * mm, 1189 * mm  # A0 Format
     box_w, box_h = w_pt / module_count, h_pt / module_count
     eps = 0.05 * mm
 
