@@ -22,7 +22,10 @@ def download():
     module_count = len(matrix)
 
     w_pt, h_pt = 594 * mm, 841 * mm  # A1 Format
-    box_w, box_h = w_pt / module_count, h_pt / module_count
+    margin = 50 * mm  # 5cm Abstand von allen Rändern
+    usable_w = w_pt - 2 * margin
+    usable_h = h_pt - 2 * margin
+    box_w, box_h = usable_w / module_count, usable_h / module_count
     eps = 0.05 * mm
 
     buffer = io.BytesIO()
@@ -32,8 +35,8 @@ def download():
     c.setAuthor("neuerstandard")
     c.setSubject("A recursively generated poster that encodes a link to its own identical copy.")
 
-    # Hintergrund: Gelb (#FAFD00)
-    c.setFillColorRGB(0.98, 0.992, 0)  # FAFD00 in RGB (0.98, 0.992, 0)
+    # Hintergrund: Rot (#FF0004)
+    c.setFillColorRGB(1, 0, 0.0157)  # FF0004 in RGB (1, 0, 0.0157)
 
     c.rect(0, 0, w_pt, h_pt, fill=1, stroke=0)
 
@@ -43,8 +46,8 @@ def download():
     for r, row in enumerate(matrix):
         for cidx, bit in enumerate(row):
             if bit:
-                x = cidx * box_w - eps
-                y = h_pt - (r + 1) * box_h - eps
+                x = margin + cidx * box_w - eps
+                y = h_pt - margin - (r + 1) * box_h - eps
                 c.rect(x, y, box_w + 2 * eps, box_h + 2 * eps, fill=1, stroke=0)
 
     c.showPage()
