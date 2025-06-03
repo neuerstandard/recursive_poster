@@ -3,8 +3,7 @@
   publish = "."
 
 [build.environment]
-  PYTHON_VERSION = "3.9"
-  PIP_VERSION = "21.0.1"
+  PYTHON_VERSION = "3.7"
 
 [[plugins]]
   package = "@netlify/plugin-python" 
