@@ -32,11 +32,11 @@ def download():
     c.setAuthor("neuerstandard")
     c.setSubject("A recursively generated poster that encodes a link to its own identical copy.")
 
-    c.setFillColorRGB(1, 1, 1)
+    c.setFillColorRGB(1, 1, 1)  # #FFFFFF (Weiß) für den Hintergrund
 
     c.rect(0, 0, w_pt, h_pt, fill=1, stroke=0)
 
-    c.setFillColorRGB(0, 0, 0)
+    c.setFillColorRGB(1, 0.1098, 0.1098)  # #FF1C1C (Rot) für den QR-Code
 
     for r, row in enumerate(matrix):
         for cidx, bit in enumerate(row):
